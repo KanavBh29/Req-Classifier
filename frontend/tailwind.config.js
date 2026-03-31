@@ -4,8 +4,8 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Syne', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        sans: ['Inter', 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', 'sans-serif'],
+        mono: ['IBM Plex Mono', 'Consolas', 'Monaco', 'monospace'],
       },
       colors: {
         brand: {
@@ -37,18 +37,18 @@ export default {
     themes: [
       {
         dark: {
-          "primary": "#7c3aed",
+          "primary": "#8b5cf6",
           "primary-content": "#ffffff",
-          "secondary": "#a855f7",
+          "secondary": "#a78bfa",
           "secondary-content": "#ffffff",
-          "accent": "#06b6d4",
-          "accent-content": "#ffffff",
-          "neutral": "#1e1b2e",
-          "neutral-content": "#e2e8f0",
-          "base-100": "#0f0d1a",
-          "base-200": "#16132a",
-          "base-300": "#1e1b2e",
-          "base-content": "#e2e8f0",
+          "accent": "#c4b5fd",
+          "accent-content": "#111111",
+          "neutral": "#171717",
+          "neutral-content": "#f4f4f5",
+          "base-100": "#0a0a0a",
+          "base-200": "#121212",
+          "base-300": "#1d1d1f",
+          "base-content": "#f5f5f5",
           "info": "#3b82f6",
           "success": "#10b981",
           "warning": "#f59e0b",
@@ -57,16 +57,16 @@ export default {
         light: {
           "primary": "#7c3aed",
           "primary-content": "#ffffff",
-          "secondary": "#a855f7",
+          "secondary": "#8b5cf6",
           "secondary-content": "#ffffff",
-          "accent": "#06b6d4",
+          "accent": "#a78bfa",
           "accent-content": "#ffffff",
-          "neutral": "#f1f0ff",
-          "neutral-content": "#1e1b2e",
+          "neutral": "#f5f5f5",
+          "neutral-content": "#18181b",
           "base-100": "#ffffff",
-          "base-200": "#f8f7ff",
-          "base-300": "#f1f0ff",
-          "base-content": "#1e1b2e",
+          "base-200": "#fafafa",
+          "base-300": "#f2f2f4",
+          "base-content": "#18181b",
           "info": "#3b82f6",
           "success": "#10b981",
           "warning": "#f59e0b",

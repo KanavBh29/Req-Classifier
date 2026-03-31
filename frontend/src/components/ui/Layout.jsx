@@ -6,12 +6,12 @@ import { useSocket } from '../../context/SocketContext';
 import toast from 'react-hot-toast';
 
 const NAV_ITEMS = [
-  { to: '/dashboard', icon: '⬡', label: 'Dashboard' },
-  { to: '/requirements', icon: '◈', label: 'Requirements' },
-  { to: '/testcases', icon: '◎', label: 'Test Cases' },
-  { to: '/traceability', icon: '⟁', label: 'Traceability' },
-  { to: '/analytics', icon: '◇', label: 'Analytics' },
-  { to: '/reports', icon: '⊞', label: 'Reports' },
+  { to: '/dashboard', label: 'Dashboard' },
+  { to: '/requirements', label: 'Requirements' },
+  { to: '/testcases', label: 'Test Cases' },
+  { to: '/traceability', label: 'Traceability' },
+  { to: '/analytics', label: 'Analytics' },
+  { to: '/reports', label: 'Reports' },
 ];
 
 export default function Layout() {
@@ -35,7 +35,7 @@ export default function Layout() {
       )}
 
       {/* Sidebar */}
-      <aside className={`fixed lg:static inset-y-0 left-0 z-30 w-64 bg-base-200/80 backdrop-blur-xl border-r border-white/5 flex flex-col transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
+      <aside className={`fixed lg:static inset-y-0 left-0 z-30 w-64 bg-base-200/95 border-r border-white/5 flex flex-col transition-transform duration-300 ${sidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'}`}>
         {/* Logo */}
         <div className="p-6 border-b border-white/5">
           <div className="flex items-center gap-3">
@@ -57,7 +57,6 @@ export default function Layout() {
               className={({ isActive }) => `sidebar-link ${isActive ? 'active' : ''}`}
               onClick={() => setSidebarOpen(false)}
             >
-              <span className="text-lg w-5 text-center font-mono">{item.icon}</span>
               <span>{item.label}</span>
             </NavLink>
           ))}
@@ -79,7 +78,7 @@ export default function Layout() {
             </div>
           </div>
           <button onClick={handleLogout} className="btn btn-ghost btn-sm w-full justify-start text-base-content/50 hover:text-error text-xs">
-            ⊗ Sign Out
+            Sign Out
           </button>
         </div>
       </aside>
@@ -87,16 +86,16 @@ export default function Layout() {
       {/* Main */}
       <div className="flex-1 flex flex-col min-w-0 lg:ml-0">
         {/* Topbar */}
-        <header className="sticky top-0 z-10 bg-base-100/80 backdrop-blur-xl border-b border-white/5 px-6 py-4 flex items-center justify-between">
-          <button className="lg:hidden btn btn-ghost btn-sm" onClick={() => setSidebarOpen(true)}>☰</button>
+        <header className="sticky top-0 z-10 bg-base-100/95 border-b border-white/5 px-6 py-4 flex items-center justify-between">
+          <button className="lg:hidden btn btn-ghost btn-sm" onClick={() => setSidebarOpen(true)}>Menu</button>
           <div className="hidden lg:flex items-center gap-2 text-xs text-base-content/40">
             <span>ReqTrace</span>
             <span>/</span>
             <span className="text-base-content/70 capitalize">{location.pathname.replace('/', '')}</span>
           </div>
           <div className="flex items-center gap-3 ml-auto">
-            <button onClick={toggleTheme} className="btn btn-ghost btn-sm btn-circle" title="Toggle theme">
-              {theme === 'dark' ? '☀' : '◑'}
+            <button onClick={toggleTheme} className="btn btn-ghost btn-sm" title="Toggle theme">
+              {theme === 'dark' ? 'Light' : 'Dark'}
             </button>
             <div className="text-xs text-base-content/40 hidden sm:block">
               Welcome, <span className="text-primary font-medium">{user?.name}</span>

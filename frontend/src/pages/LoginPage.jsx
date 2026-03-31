@@ -50,7 +50,7 @@ export default function LoginPage() {
             <div>
               <label className="label"><span className="label-text text-xs text-base-content/60">Password</span></label>
               <input
-                type="password" placeholder="••••••••" required
+                type="password" placeholder="Enter password" required
                 className="input-field" value={form.password}
                 onChange={e => setForm({ ...form, password: e.target.value })}
               />
@@ -63,7 +63,7 @@ export default function LoginPage() {
           <div className="divider text-xs text-base-content/30">or</div>
 
           <button onClick={demoLogin} className="btn btn-outline btn-sm w-full border-white/10 hover:border-primary/50 text-xs">
-            ⚡ Fill Demo Credentials
+            Fill Demo Credentials
           </button>
 
           <p className="text-center text-xs text-base-content/40 mt-4">
