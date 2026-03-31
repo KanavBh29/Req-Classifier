@@ -19,15 +19,15 @@ const ClassifyModal = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
       <div className="glass-card w-full max-w-lg animate-in">
         <div className="flex justify-between items-center mb-4">
           <h3 className="font-bold text-base-content">Quick Classify</h3>
-          <button onClick={onClose} className="btn btn-ghost btn-sm btn-circle">✕</button>
+          <button onClick={onClose} className="btn btn-ghost btn-sm btn-circle">X</button>
         </div>
         <textarea className="textarea textarea-bordered bg-base-200/50 border-white/10 w-full h-28 text-sm" placeholder="Enter a requirement text to classify..." value={text} onChange={e => setText(e.target.value)} />
         <button onClick={classify} disabled={loading || !text.trim()} className="btn-primary-glow w-full mt-3 btn-sm">
-          {loading ? <span className="loading loading-spinner loading-xs"></span> : '⚡ Classify'}
+          {loading ? <span className="loading loading-spinner loading-xs"></span> : 'Classify'}
         </button>
         {result && (
           <div className="mt-4 glass rounded-xl p-4 space-y-3">
@@ -41,7 +41,7 @@ const ClassifyModal = ({ onClose }) => {
             </div>
             {result.ambiguityFlag && (
               <div>
-                <span className="text-xs text-amber-400">⚠ Ambiguous terms: </span>
+                <span className="text-xs text-amber-400">Ambiguous terms: </span>
                 <span className="text-xs text-base-content/60">{result.ambiguousTerms?.join(', ')}</span>
               </div>
             )}
@@ -59,7 +59,7 @@ const RequirementCard = ({ req, onDelete }) => (
         <div className="flex items-center gap-2 flex-wrap mb-2">
           <span className="text-xs font-mono text-base-content/30">{req.requirementId}</span>
           <span className={req.classification === 'FR' ? 'badge-fr' : 'badge-nfr'}>{req.classification}</span>
-          {req.ambiguityFlag && <span className="badge-ambiguous">⚠ Ambiguous</span>}
+          {req.ambiguityFlag && <span className="badge-ambiguous">Ambiguous</span>}
         </div>
         <p className="text-sm text-base-content/80 leading-relaxed">{req.text}</p>
         {req.ambiguousTerms?.length > 0 && (
@@ -80,7 +80,7 @@ const RequirementCard = ({ req, onDelete }) => (
           <span className="text-xs text-base-content/20">{new Date(req.createdAt).toLocaleDateString()}</span>
         </div>
       </div>
-      <button onClick={() => onDelete(req._id)} className="btn btn-ghost btn-xs text-error/50 hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">✕</button>
+      <button onClick={() => onDelete(req._id)} className="btn btn-ghost btn-xs text-error/50 hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">Delete</button>
     </div>
   </div>
 );
@@ -162,9 +162,9 @@ export default function RequirementsPage() {
           <p className="text-base-content/40 text-sm">{total} total requirements</p>
         </div>
         <div className="flex gap-2">
-          <button onClick={() => setShowClassify(true)} className="btn btn-outline btn-sm border-white/10 hover:border-primary/50 text-xs">⚡ Quick Classify</button>
+          <button onClick={() => setShowClassify(true)} className="btn btn-outline btn-sm border-white/10 hover:border-primary/50 text-xs">Quick Classify</button>
           <button onClick={() => setTab(tab === 'upload' ? 'list' : 'upload')} className="btn-primary-glow btn-sm">
-            {tab === 'upload' ? '← Back' : '+ Upload'}
+            {tab === 'upload' ? 'Back' : 'Upload'}
           </button>
         </div>
       </div>
@@ -176,7 +176,7 @@ export default function RequirementsPage() {
             <h3 className="font-semibold text-base-content mb-4 text-sm">Upload File (.txt)</h3>
             <div {...getRootProps()} className={`border-2 border-dashed rounded-xl p-8 text-center cursor-pointer transition-all ${isDragActive ? 'border-primary bg-primary/10' : 'border-white/10 hover:border-primary/40'}`}>
               <input {...getInputProps()} />
-              <div className="text-3xl mb-3">⬆</div>
+              <div className="text-3xl mb-3">Upload</div>
               <p className="text-sm text-base-content/60">{isDragActive ? 'Drop here...' : 'Drag & drop a .txt file'}</p>
               <p className="text-xs text-base-content/30 mt-1">One requirement per line</p>
             </div>
@@ -193,7 +193,7 @@ export default function RequirementsPage() {
             />
             <p className="text-xs text-base-content/30 mt-2 mb-3">{manualText.split('\n').filter(l => l.trim()).length} requirements to classify</p>
             <button onClick={handleManualSubmit} disabled={uploading || !manualText.trim()} className="btn-primary-glow w-full btn-sm">
-              {uploading ? <><span className="loading loading-spinner loading-xs"></span> Classifying...</> : '⚡ Classify & Save'}
+              {uploading ? <><span className="loading loading-spinner loading-xs"></span> Classifying...</> : 'Classify and Save'}
             </button>
           </div>
         </div>
@@ -202,7 +202,7 @@ export default function RequirementsPage() {
           {/* Filters */}
           <div className="glass-card !p-3 flex flex-wrap gap-3 items-center">
             <input
-              type="text" placeholder="🔍 Search requirements..." value={search}
+              type="text" placeholder="Search requirements..." value={search}
               onChange={e => { setSearch(e.target.value); setPage(1); }}
               className="input input-sm bg-base-200/50 border-white/10 flex-1 min-w-48 focus:border-primary/50"
             />
@@ -224,7 +224,6 @@ export default function RequirementsPage() {
               Array(5).fill(0).map((_, i) => <div key={i} className="skeleton h-24 w-full rounded-xl"></div>)
             ) : requirements.length === 0 ? (
               <div className="glass-card text-center py-16">
-                <div className="text-5xl mb-4 opacity-20">◈</div>
                 <p className="text-base-content/40 text-sm">No requirements found</p>
                 <button onClick={() => setTab('upload')} className="btn btn-primary btn-sm mt-4">Upload Requirements</button>
               </div>

@@ -19,10 +19,9 @@ const downloadCSV = (rows, headers, filename) => {
   URL.revokeObjectURL(url);
 };
 
-const ReportCard = ({ title, description, icon, actions }) => (
+const ReportCard = ({ title, description, actions }) => (
   <div className="glass-card hover:border-primary/30 border border-transparent transition-all">
     <div className="flex items-start gap-4">
-      <div className="w-10 h-10 rounded-xl bg-primary/20 flex items-center justify-center text-xl flex-shrink-0">{icon}</div>
       <div className="flex-1">
         <h3 className="font-semibold text-base-content">{title}</h3>
         <p className="text-xs text-base-content/40 mt-1 mb-4">{description}</p>
@@ -114,42 +113,39 @@ export default function ReportsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         <ReportCard
           title="SRS Report"
-          description="Software Requirements Specification — all FR and NFR requirements with classification details"
-          icon="⊞"
+          description="Software Requirements Specification - all FR and NFR requirements with classification details"
           actions={[
-            { label: '↓ JSON', fn: exportSRSJson, loading: loading['srs-json'] },
-            { label: '↓ CSV', fn: exportSRSCsv, loading: loading['srs-csv'] },
-            { label: '⧉ Copy Link', fn: () => copyLink('/reports') },
+            { label: 'Download JSON', fn: exportSRSJson, loading: loading['srs-json'] },
+            { label: 'Download CSV', fn: exportSRSCsv, loading: loading['srs-csv'] },
+            { label: 'Copy Link', fn: () => copyLink('/reports') },
           ]}
         />
         <ReportCard
           title="Traceability Matrix"
           description="Complete requirement-to-test-case traceability mapping with validation status"
-          icon="⟁"
           actions={[
-            { label: '↓ JSON', fn: exportTraceJson, loading: loading['trace-json'] },
-            { label: '↓ CSV', fn: exportTraceCsv, loading: loading['trace-csv'] },
-            { label: '⧉ Copy Link', fn: () => copyLink('/traceability') },
+            { label: 'Download JSON', fn: exportTraceJson, loading: loading['trace-json'] },
+            { label: 'Download CSV', fn: exportTraceCsv, loading: loading['trace-csv'] },
+            { label: 'Copy Link', fn: () => copyLink('/traceability') },
           ]}
         />
         <ReportCard
           title="KPI Analytics Report"
           description="Quality metrics including ambiguity rate, traceability coverage, and validation statistics"
-          icon="◇"
           actions={[
-            { label: '↓ JSON', fn: exportKpiJson, loading: loading['kpi-json'] },
-            { label: '⧉ Copy Link', fn: () => copyLink('/analytics') },
+            { label: 'Download JSON', fn: exportKpiJson, loading: loading['kpi-json'] },
+            { label: 'Copy Link', fn: () => copyLink('/analytics') },
           ]}
         />
 
         {/* How-to */}
         <div className="glass-card border border-primary/20 bg-primary/5">
-          <h3 className="font-semibold text-primary mb-2">📋 About Reports</h3>
+          <h3 className="font-semibold text-primary mb-2">About Reports</h3>
           <ul className="space-y-1.5 text-xs text-base-content/60">
-            <li>• <strong className="text-base-content/80">SRS Report</strong>: Export full requirements spec in JSON or CSV</li>
-            <li>• <strong className="text-base-content/80">Traceability</strong>: Req-to-test case matrix for audit trails</li>
-            <li>• <strong className="text-base-content/80">KPI Report</strong>: Analytics snapshot with all metrics</li>
-            <li>• <strong className="text-base-content/80">Copy Link</strong>: Share read-only view with stakeholders</li>
+            <li>- <strong className="text-base-content/80">SRS Report</strong>: Export full requirements spec in JSON or CSV</li>
+            <li>- <strong className="text-base-content/80">Traceability</strong>: Req-to-test case matrix for audit trails</li>
+            <li>- <strong className="text-base-content/80">KPI Report</strong>: Analytics snapshot with all metrics</li>
+            <li>- <strong className="text-base-content/80">Copy Link</strong>: Share read-only view with stakeholders</li>
           </ul>
         </div>
       </div>

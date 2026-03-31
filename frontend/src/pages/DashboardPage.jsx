@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 const COLORS = { FR: '#10b981', NFR: '#3b82f6', ambiguous: '#f59e0b' };
 
-const StatCard = ({ label, value, sub, color = 'primary', icon, loading }) => (
+const StatCard = ({ label, value, sub, color = 'primary', loading }) => (
   <div className="stat-card">
     {loading ? (
       <div className="space-y-3">
@@ -18,7 +18,6 @@ const StatCard = ({ label, value, sub, color = 'primary', icon, loading }) => (
       <>
         <div className="flex items-start justify-between mb-3">
           <span className="text-xs text-base-content/40 uppercase tracking-wider font-medium">{label}</span>
-          <span className="text-lg">{icon}</span>
         </div>
         <p className={`text-3xl font-bold text-${color} mb-1`}>{value}</p>
         {sub && <p className="text-xs text-base-content/40">{sub}</p>}
@@ -82,16 +81,16 @@ export default function DashboardPage() {
 
       {/* KPI Cards */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        <StatCard label="Total Requirements" value={kpi?.totalRequirements ?? '—'} sub="All time" icon="◈" color="primary" loading={loading} />
-        <StatCard label="Functional" value={kpi?.functionalRequirements ?? '—'} sub="FR requirements" icon="◉" color="success" loading={loading} />
-        <StatCard label="Non-Functional" value={kpi?.nonFunctionalRequirements ?? '—'} sub="NFR requirements" icon="◎" color="info" loading={loading} />
-        <StatCard label="Ambiguity Rate" value={kpi ? `${kpi.ambiguityRate}%` : '—'} sub={`${kpi?.ambiguousRequirements ?? 0} flagged`} icon="⚠" color="warning" loading={loading} />
+        <StatCard label="Total Requirements" value={kpi?.totalRequirements ?? '-'} sub="All time" color="primary" loading={loading} />
+        <StatCard label="Functional" value={kpi?.functionalRequirements ?? '-'} sub="FR requirements" color="success" loading={loading} />
+        <StatCard label="Non-Functional" value={kpi?.nonFunctionalRequirements ?? '-'} sub="NFR requirements" color="info" loading={loading} />
+        <StatCard label="Ambiguity Rate" value={kpi ? `${kpi.ambiguityRate}%` : '-'} sub={`${kpi?.ambiguousRequirements ?? 0} flagged`} color="warning" loading={loading} />
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <StatCard label="Traceability Coverage" value={kpi ? `${kpi.traceabilityCoverage}%` : '—'} sub={`${kpi?.totalTraceLinks ?? 0} links`} icon="⟁" color="secondary" loading={loading} />
-        <StatCard label="Validation Coverage" value={kpi ? `${kpi.validationCoverage}%` : '—'} sub={`${kpi?.validatedLinks ?? 0} validated`} icon="✓" color="success" loading={loading} />
-        <StatCard label="Test Cases" value={kpi?.totalTestCases ?? '—'} sub="Total test cases" icon="◇" color="accent" loading={loading} />
+        <StatCard label="Traceability Coverage" value={kpi ? `${kpi.traceabilityCoverage}%` : '-'} sub={`${kpi?.totalTraceLinks ?? 0} links`} color="secondary" loading={loading} />
+        <StatCard label="Validation Coverage" value={kpi ? `${kpi.validationCoverage}%` : '-'} sub={`${kpi?.validatedLinks ?? 0} validated`} color="success" loading={loading} />
+        <StatCard label="Test Cases" value={kpi?.totalTestCases ?? '-'} sub="Total test cases" color="accent" loading={loading} />
       </div>
 
       {/* Charts */}
@@ -161,10 +160,9 @@ export default function DashboardPage() {
       {/* Quick info */}
       {!loading && kpi && kpi.totalRequirements === 0 && (
         <div className="glass-card text-center py-12">
-          <div className="text-5xl mb-4">◈</div>
           <h3 className="text-base font-semibold text-base-content/60">No requirements yet</h3>
           <p className="text-sm text-base-content/30 mt-1">Upload requirements to see analytics</p>
-          <a href="/requirements" className="btn btn-primary btn-sm mt-4">Upload Requirements →</a>
+          <a href="/requirements" className="btn btn-primary btn-sm mt-4">Upload Requirements</a>
         </div>
       )}
     </div>

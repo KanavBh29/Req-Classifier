@@ -26,11 +26,11 @@ const CreateModal = ({ onClose, onCreated }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
       <div className="glass-card w-full max-w-lg animate-in">
         <div className="flex justify-between items-center mb-4">
           <h3 className="font-bold">New Test Case</h3>
-          <button onClick={onClose} className="btn btn-ghost btn-sm btn-circle">✕</button>
+          <button onClick={onClose} className="btn btn-ghost btn-sm btn-circle">X</button>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -40,7 +40,7 @@ const CreateModal = ({ onClose, onCreated }) => {
           <div>
             <label className="label"><span className="label-text text-xs">Link to Requirement (optional)</span></label>
             <select className="select select-bordered bg-base-200/50 border-white/10 w-full text-sm" value={form.linkedRequirement} onChange={e => setForm({ ...form, linkedRequirement: e.target.value })}>
-              <option value="">— None —</option>
+              <option value="">None</option>
               {requirements.map(r => <option key={r._id} value={r._id}>{r.requirementId}: {r.text.slice(0, 60)}...</option>)}
             </select>
           </div>
@@ -96,7 +96,7 @@ export default function TestCasesPage() {
           <h1 className="text-2xl font-bold">Test Cases</h1>
           <p className="text-base-content/40 text-sm">{total} test cases</p>
         </div>
-        <button onClick={() => setShowCreate(true)} className="btn-primary-glow btn-sm">+ New Test Case</button>
+        <button onClick={() => setShowCreate(true)} className="btn-primary-glow btn-sm">New Test Case</button>
       </div>
 
       <div className="space-y-3">
@@ -104,7 +104,6 @@ export default function TestCasesPage() {
           Array(4).fill(0).map((_, i) => <div key={i} className="skeleton h-20 w-full rounded-xl"></div>)
         ) : testCases.length === 0 ? (
           <div className="glass-card text-center py-16">
-            <div className="text-5xl mb-4 opacity-20">◎</div>
             <p className="text-base-content/40 text-sm">No test cases yet</p>
             <button onClick={() => setShowCreate(true)} className="btn btn-primary btn-sm mt-4">Create Test Case</button>
           </div>
@@ -124,7 +123,7 @@ export default function TestCasesPage() {
                   ))}
                 </div>
               </div>
-              <button onClick={() => handleDelete(tc._id)} className="btn btn-ghost btn-xs text-error/50 hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">✕</button>
+              <button onClick={() => handleDelete(tc._id)} className="btn btn-ghost btn-xs text-error/50 hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">Delete</button>
             </div>
           </div>
         ))}

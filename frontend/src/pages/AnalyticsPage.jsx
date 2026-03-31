@@ -54,10 +54,10 @@ export default function AnalyticsPage() {
           {/* KPI summary */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { label: 'Quality Score', value: kpi ? `${Math.round((kpi.traceabilityCoverage + kpi.validationCoverage + (100 - kpi.ambiguityRate)) / 3)}%` : '—', color: 'text-primary' },
-              { label: 'Ambiguity Rate', value: kpi ? `${kpi.ambiguityRate}%` : '—', color: 'text-warning' },
-              { label: 'FR/NFR Ratio', value: kpi?.nonFunctionalRequirements > 0 ? `${(kpi.functionalRequirements / kpi.nonFunctionalRequirements).toFixed(1)}:1` : '—', color: 'text-info' },
-              { label: 'Coverage Gap', value: kpi ? `${(100 - kpi.traceabilityCoverage).toFixed(1)}%` : '—', color: 'text-error' },
+              { label: 'Quality Score', value: kpi ? `${Math.round((kpi.traceabilityCoverage + kpi.validationCoverage + (100 - kpi.ambiguityRate)) / 3)}%` : '-', color: 'text-primary' },
+              { label: 'Ambiguity Rate', value: kpi ? `${kpi.ambiguityRate}%` : '-', color: 'text-warning' },
+              { label: 'FR/NFR Ratio', value: kpi?.nonFunctionalRequirements > 0 ? `${(kpi.functionalRequirements / kpi.nonFunctionalRequirements).toFixed(1)}:1` : '-', color: 'text-info' },
+              { label: 'Coverage Gap', value: kpi ? `${(100 - kpi.traceabilityCoverage).toFixed(1)}%` : '-', color: 'text-error' },
             ].map(s => (
               <div key={s.label} className="stat-card">
                 <p className="text-xs text-base-content/40 uppercase tracking-wider mb-2">{s.label}</p>

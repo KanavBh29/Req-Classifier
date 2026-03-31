@@ -32,24 +32,24 @@ const LinkModal = ({ onClose, onLinked }) => {
   };
 
   return (
-    <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+    <div className="fixed inset-0 bg-black/60 flex items-center justify-center z-50 p-4">
       <div className="glass-card w-full max-w-lg animate-in">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="font-bold">Link Requirement → Test Case</h3>
-          <button onClick={onClose} className="btn btn-ghost btn-sm btn-circle">✕</button>
+          <h3 className="font-bold">Link Requirement to Test Case</h3>
+          <button onClick={onClose} className="btn btn-ghost btn-sm btn-circle">X</button>
         </div>
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="label"><span className="label-text text-xs">Requirement</span></label>
             <select required className="select select-bordered bg-base-200/50 border-white/10 w-full text-sm" value={form.requirementId} onChange={e => setForm({ ...form, requirementId: e.target.value })}>
-              <option value="">— Select Requirement —</option>
+              <option value="">Select Requirement</option>
               {requirements.map(r => <option key={r._id} value={r._id}>[{r.classification}] {r.requirementId}: {r.text.slice(0, 50)}...</option>)}
             </select>
           </div>
           <div>
             <label className="label"><span className="label-text text-xs">Test Case</span></label>
             <select required className="select select-bordered bg-base-200/50 border-white/10 w-full text-sm" value={form.testCaseId} onChange={e => setForm({ ...form, testCaseId: e.target.value })}>
-              <option value="">— Select Test Case —</option>
+              <option value="">Select Test Case</option>
               {testCases.map(t => <option key={t._id} value={t._id}>{t.testCaseId}: {t.description.slice(0, 60)}...</option>)}
             </select>
           </div>
@@ -64,7 +64,7 @@ const LinkModal = ({ onClose, onLinked }) => {
             <input type="text" className="input-field text-sm" placeholder="Add notes..." value={form.notes} onChange={e => setForm({ ...form, notes: e.target.value })} />
           </div>
           <button type="submit" disabled={loading} className="btn-primary-glow w-full btn-sm">
-            {loading ? <span className="loading loading-spinner loading-xs"></span> : '⟁ Create Link'}
+            {loading ? <span className="loading loading-spinner loading-xs"></span> : 'Create Link'}
           </button>
         </form>
       </div>
@@ -153,11 +153,11 @@ export default function TraceabilityPage() {
                             {link ? (
                               <div className="flex justify-center">
                                 <span className={`badge badge-xs border ${STATUS_BADGE[link.validationStatus] || ''}`}>
-                                  {link.validationStatus === 'Validated' ? '✓' : link.validationStatus === 'Pending' ? '○' : '✕'}
+                                  {link.validationStatus === 'Validated' ? 'OK' : link.validationStatus === 'Pending' ? 'Pending' : 'Missing'}
                                 </span>
                               </div>
                             ) : (
-                              <span className="text-base-content/10">—</span>
+                              <span className="text-base-content/10">-</span>
                             )}
                           </td>
                         );
@@ -177,7 +177,6 @@ export default function TraceabilityPage() {
           Array(4).fill(0).map((_, i) => <div key={i} className="skeleton h-20 w-full rounded-xl"></div>)
         ) : links.length === 0 ? (
           <div className="glass-card text-center py-16">
-            <div className="text-5xl mb-4 opacity-20">⟁</div>
             <p className="text-base-content/40 text-sm">No traceability links yet</p>
             <button onClick={() => setShowLink(true)} className="btn btn-primary btn-sm mt-4">Create First Link</button>
           </div>
@@ -189,7 +188,7 @@ export default function TraceabilityPage() {
                   <p className="text-xs text-base-content/40 mb-0.5">{link.requirementId?.requirementId}</p>
                   <p className="text-xs text-base-content/70 truncate">{link.requirementId?.text?.slice(0, 50)}...</p>
                 </div>
-                <span className="text-primary text-lg">→</span>
+                <span className="text-primary text-lg">to</span>
                 <div className="glass rounded-lg px-3 py-2 flex-1 min-w-40">
                   <p className="text-xs text-base-content/40 mb-0.5">{link.testCaseId?.testCaseId}</p>
                   <p className="text-xs text-base-content/70 truncate">{link.testCaseId?.description?.slice(0, 50)}...</p>
@@ -199,7 +198,7 @@ export default function TraceabilityPage() {
                 <select value={link.validationStatus} onChange={e => handleStatusUpdate(link._id, e.target.value)} className={`select select-xs border text-xs ${STATUS_BADGE[link.validationStatus] || ''} bg-transparent`}>
                   <option>Validated</option><option>Pending</option><option>Missing</option>
                 </select>
-                <button onClick={() => handleDelete(link._id)} className="btn btn-ghost btn-xs text-error/50 hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">✕</button>
+                <button onClick={() => handleDelete(link._id)} className="btn btn-ghost btn-xs text-error/50 hover:text-error opacity-0 group-hover:opacity-100 transition-opacity">Delete</button>
               </div>
             </div>
           </div>
